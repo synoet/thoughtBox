@@ -14,4 +14,4 @@ background: #744EFF;
 border-radius: 10px;
 `;
 
-export default Line;
+export default Divider;
