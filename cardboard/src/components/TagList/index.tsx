@@ -49,6 +49,4 @@ const TagList = () => {
 export default TagList
 
 const TagListWrapper = styled.div`
-min-width: 600px;
-max-width: 900px;
 `;
