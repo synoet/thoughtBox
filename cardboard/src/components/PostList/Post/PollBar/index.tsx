@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const PollBar = ({votes, rank, totalVotes}: {votes: number, rank: number, totalVotes: number}) => {
     return (
         <BarWrapper>
-            <Bar style = {{width: `${(votes/totalVotes) * 100 + 20}%`, opacity: `${.2 + (.2 * (4-rank))}`}} />
+            <Bar style = {{width: `${(votes/totalVotes) * 100 + 10}%`, opacity: `${.2 + (.2 * (4-rank))}`}} />
             <p>{`${votes} votes`}</p>
         </BarWrapper>
     )
@@ -14,7 +14,7 @@ const PollBar = ({votes, rank, totalVotes}: {votes: number, rank: number, totalV
 export default PollBar;
 
 const BarWrapper = styled.div`
-width: 80%;
+width: 85%;
 display: inline-block;
 vertical-align: middle;
 margin-left: 10px;

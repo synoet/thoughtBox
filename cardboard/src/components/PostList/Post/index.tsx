@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import styled from 'styled-components';
 import PollBar from './PollBar';
 import Emoji from './Emoji';
@@ -6,6 +6,11 @@ import ExpandButton from './ExpandButton';
 import Reward from 'react-rewards';
 
 const Post = ({title, link, distribution}: {title: string, link: string, distribution: {good: number, okay: number, bad: number}}) => {
+    const [goodVotes, setGoodVotes] = useState(distribution.good);
+    const [okayVotes, setOkayVotes] = useState(distribution.okay);
+    const [badVotes, setBadVotes] = useState(distribution.bad);
+    const [totalVotes, setTotalVotes] = useState(distribution.good + distribution.okay + distribution.bad);
+
     let emojiRef: any = [];
 
     const handleExpand = () => {
@@ -13,7 +18,14 @@ const Post = ({title, link, distribution}: {title: string, link: string, distrib
     }
 
     const handleReward = (index: number) => {
-        console.log('hi');
+        if(index === 0){
+            setGoodVotes(goodVotes + 1);
+        }else if(index === 1){
+            setOkayVotes(okayVotes + 1);
+        }else if(index === 2){
+            setBadVotes(badVotes + 1);
+        }
+        setTotalVotes(totalVotes + 1);
         emojiRef[index].rewardMe();
     }
 
@@ -31,7 +43,7 @@ const Post = ({title, link, distribution}: {title: string, link: string, distrib
                             <Emoji name = 'okay'/>
                         </Reward>
                     </EmojiWrapper>
-                    <PollBar votes = {100} totalVotes = {200} rank = {1} />
+                    <PollBar votes = {goodVotes} totalVotes = {totalVotes} rank = {1} />
                 </Poll>
                 <Poll>
                     <EmojiWrapper onClick = {() => handleReward(1)}>
@@ -39,7 +51,7 @@ const Post = ({title, link, distribution}: {title: string, link: string, distrib
                             <Emoji name = 'good'/>
                         </Reward>
                     </EmojiWrapper>
-                    <PollBar votes = {50} totalVotes = {200} rank = {2} />
+                    <PollBar votes = {okayVotes} totalVotes = {totalVotes} rank = {2} />
                 </Poll>
                 <Poll>
                     <EmojiWrapper onClick = {() => handleReward(2)}>
@@ -47,7 +59,7 @@ const Post = ({title, link, distribution}: {title: string, link: string, distrib
                             <Emoji name = 'bad'/>
                         </Reward>
                     </EmojiWrapper>
-                    <PollBar votes = {25} totalVotes = {200} rank = {3} />
+                    <PollBar votes = {badVotes} totalVotes = {totalVotes} rank = {3} />
                 </Poll>
             </PostContent>
             <ExpandButton callback = {handleExpand}/>

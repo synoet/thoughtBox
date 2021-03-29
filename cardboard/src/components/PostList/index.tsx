@@ -9,8 +9,8 @@ const data = [
         title: 'Cuomo got Covid tests for friends and family when access was scarce.',
         link: 'https://www.theguardian.com/us-news/2021/mar/25/andrew-cuomo-covid-tests-friends-family',
         distribution: {
-            good: 500,
-            okay: 150,
+            good: 150,
+            okay: 50,
             bad: 10,
         }
     },
@@ -18,8 +18,8 @@ const data = [
         title: 'Cuomo got Covid tests for friends and family when access was scarce.',
         link: 'https://www.theguardian.com/us-news/2021/mar/25/andrew-cuomo-covid-tests-friends-family',
         distribution: {
-            good: 500,
-            okay: 150,
+            good: 150,
+            okay: 50,
             bad: 10,
         }
     },
@@ -27,8 +27,8 @@ const data = [
         title: 'Cuomo got Covid tests for friends and family when access was scarce.',
         link: 'https://www.theguardian.com/us-news/2021/mar/25/andrew-cuomo-covid-tests-friends-family',
         distribution: {
-            good: 500,
-            okay: 150,
+            good: 150,
+            okay: 50,
             bad: 10,
         }
     },

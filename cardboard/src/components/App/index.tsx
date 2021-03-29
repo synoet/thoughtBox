@@ -26,5 +26,5 @@ align-items: center;
 `;
 
 const Content = styled.div`
-width: 650px;
+width: 700px;
 `;
