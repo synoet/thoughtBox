@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-const Tag = ({name, isSelected}: {name: string, isSelected: boolean}) => {
+const Tag = ({name, isSelected, onClick}: {name: string, isSelected: boolean, onClick: any}) => {
     return (
-        <StyledTag>
+        <StyledTag onClick = {() => onClick(name)}>
                 <p className = {isSelected ? 'active' : ''}>{name}</p>
         </StyledTag>
     )

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
 import BrandedHeader from '../BrandedHeader';
-import TagList from '../TagList';
 import PostList from '../PostList';
 
 const App = () => {
@@ -9,7 +8,6 @@ const App = () => {
         <AppWrapper>
             <BrandedHeader />
             <Content>
-                <TagList />
                 <PostList />
             </Content>
         </AppWrapper>

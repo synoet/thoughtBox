@@ -33,12 +33,12 @@ const data = [
         isSelected: false
     }
 ]
-const TagList = () => {
+const TagList = ({callback, categories}: {callback: any, categories: string[]}) => {
     return (
         <TagListWrapper>
             {data.map(item => {
                 return (
-                    <Tag name = {item.name} isSelected = {item.isSelected}></Tag>
+                    <Tag onClick = {() => callback(item.name)} name = {item.name} isSelected = {categories.indexOf(item.name) > -1 ? true : item.isSelected}></Tag>
                 )
             })}
             <Divider />
