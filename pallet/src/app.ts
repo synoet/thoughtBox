@@ -1,24 +1,38 @@
 import express from 'express';
 import * as http from 'http';
+import * as bodyparser from 'body-parser';
+
+import {CommonRoutesConfig} from './common/common.routes.config';
+import {PostsRoutes} from './posts/posts.routes.config';
 
 import * as winston from 'winston';
 import * as expressWinston from 'express-winston';
-import cors from 'cors';
-
-import { CommonRoutesConfig } from './common/common.routes.config';
-import { PostsRoutes } from './posts/posts.routes.config';
-import debug from 'debug';
-
+import helmet from 'helmet';
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
 const port = 3000;
-const routes: Array<CommonRoutesConfig> = [];
-const debugLog: debug.IDebugger = debug('app');
+const routes: any = [];
 
-app.use(express.json());
+app.use(bodyparser.json({limit: '5mb'}));
 
-app.use(cors());
+let index = expressWinston.requestWhitelist.indexOf('headers');
+if (index !== -1) expressWinston.requestWhitelist.splice(index, 1);
+
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+    res.header('Access-Control-Expose-Headers', 'Content-Length');
+    res.header('Access-Control-Allow-Headers', req.header('Access-Control-Request-Headers'));
+    if (req.method === 'OPTIONS') {
+        return res.status(200).send();
+    } else {
+        return next();
+    }
+});
+
+app.use(helmet());
 
 app.use(expressWinston.logger({
     transports: [
@@ -30,6 +44,7 @@ app.use(expressWinston.logger({
     )
 }));
 
+// routes definition should be placed here
 routes.push(new PostsRoutes(app));
 
 app.use(expressWinston.errorLogger({
@@ -43,12 +58,14 @@ app.use(expressWinston.errorLogger({
 }));
 
 app.get('/', (req: express.Request, res: express.Response) => {
-    res.status(200).send(`Server running at http://localhost:${port}`)
+    res.status(200).send(`Server running at port ${port}`)
 });
 
 server.listen(port, () => {
-    debugLog(`Server running at http://localhost:${port}`);
+    console.log(`Server running at port ${port}`);
     routes.forEach((route: CommonRoutesConfig) => {
-        debugLog(`Routes configured for ${route.getName()}`);
+        console.log(`Routes configured for ${route.getName()}`);
     });
 });
+
+export default app;

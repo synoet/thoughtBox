@@ -1,0 +1,26 @@
+version: '3'
+services:
+  api:
+    command: npm run test-dev
+    build: .
+    volumes:
+      - ./api:/app
+    links:
+      - mongo
+    networks:
+      - backend
+    ports:
+      - "3000:3000"
+
+  mongo:
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    networks:
+      - backend
+    ports:
+      - "27017:27017"
+
+networks:
+  backend:
+    driver: bridge
