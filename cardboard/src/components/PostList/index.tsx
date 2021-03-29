@@ -159,6 +159,9 @@ const PostList = ({switchToPost}: any) => {
                             </div>
                         )
                     }
+                    return (
+                        <h1>none</h1>
+                    )
                 }
             })}
         </PostListWrapper>
