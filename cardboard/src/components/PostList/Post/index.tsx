@@ -1,8 +1,22 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import styled from 'styled-components';
 import PollBar from './PollBar';
 import Emoji from './Emoji';
+import ExpandButton from './ExpandButton';
+import Reward from 'react-rewards';
+
 const Post = ({title, link, distribution}: {title: string, link: string, distribution: {good: number, okay: number, bad: number}}) => {
+    let emojiRef: any = [];
+
+    const handleExpand = () => {
+        console.log('expand!');
+    }
+
+    const handleReward = (index: number) => {
+        console.log('hi');
+        emojiRef[index].rewardMe();
+    }
+
     return (
         <PostWrapper>
             <PostTitle>
@@ -11,15 +25,38 @@ const Post = ({title, link, distribution}: {title: string, link: string, distrib
             </PostTitle>
             <ContentDivider></ContentDivider>
             <PostContent>
-                <Poll><Emoji name = 'okay'/><PollBar votes = {100} totalVotes = {200} rank = {1}></PollBar></Poll>
-                <Poll><Emoji name = 'good'/><PollBar votes = {50} totalVotes = {200} rank = {2}></PollBar></Poll>
-                <Poll><Emoji name = 'bad'/><PollBar votes = {25} totalVotes = {200} rank = {3}></PollBar></Poll>
+                <Poll>
+                    <EmojiWrapper onClick = {() => handleReward(0)}>
+                        <Reward ref={(ref) => { emojiRef[0] = ref }} type = 'confetti'>
+                            <Emoji name = 'okay'/>
+                        </Reward>
+                    </EmojiWrapper>
+                    <PollBar votes = {100} totalVotes = {200} rank = {1} />
+                </Poll>
+                <Poll>
+                    <EmojiWrapper onClick = {() => handleReward(1)}>
+                        <Reward ref={(ref) => { emojiRef[1] = ref }} type = 'confetti'>
+                            <Emoji name = 'good'/>
+                        </Reward>
+                    </EmojiWrapper>
+                    <PollBar votes = {50} totalVotes = {200} rank = {2} />
+                </Poll>
+                <Poll>
+                    <EmojiWrapper onClick = {() => handleReward(2)}>
+                        <Reward ref={(ref) => { emojiRef[2] = ref }} type = 'confetti'>
+                            <Emoji name = 'bad'/>
+                        </Reward>
+                    </EmojiWrapper>
+                    <PollBar votes = {25} totalVotes = {200} rank = {3} />
+                </Poll>
             </PostContent>
+            <ExpandButton callback = {handleExpand}/>
         </PostWrapper>
     )
 }
 
 const PostWrapper = styled.div`
+position: relative;
 background: #363742;
 border-radius: 24.1763px;
 max-width: 100%;
@@ -63,6 +100,13 @@ a: hover {
 const PostContent = styled.div`
 padding: 1rem;
 
+`;
+
+const EmojiWrapper = styled.div`
+display: inline-block;
+:hover {
+transform: scale(1.1);
+}
 `;
 
 export default Post;
