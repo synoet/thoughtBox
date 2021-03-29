@@ -70,6 +70,9 @@ background: #363742;
 border-radius: 24.1763px;
 max-width: 100%;
 min-height: 250px;
+@media screen and (max-width: 768px) {
+    width: 75%;
+  }
 `;
 
 const Poll = styled.div`

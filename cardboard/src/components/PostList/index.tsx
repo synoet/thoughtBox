@@ -170,6 +170,8 @@ const PostList = ({switchToPost}: any) => {
 
 export default PostList;
 const PostListWrapper = styled.div`
-min-width: 600px;
-max-width: 900px;
+@media screen and (max-width: 768px) {
+    width: 75%;
+  }
+
 `;
