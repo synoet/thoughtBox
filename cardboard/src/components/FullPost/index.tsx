@@ -1,11 +1,12 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import PollBar from './PollBar';
-import Emoji from './Emoji';
-import ExpandButton from './ExpandButton';
+import Emoji from '../PostList/Post/Emoji';
+import PollBar from '../PostList/Post/PollBar';
 import Reward from 'react-rewards';
+import CommentsList from './CommentsList';
 
-const Post = ({post, switchToPost}: {post: any, switchToPost: any}) => {
+import CloseButton from './CloseButton';
+const FullPost = ({post, handleClosePost}: any) => {
     const [goodVotes, setGoodVotes] = useState(post.distribution.good);
     const [okayVotes, setOkayVotes] = useState(post.distribution.okay);
     const [badVotes, setBadVotes] = useState(post.distribution.bad);
@@ -25,15 +26,12 @@ const Post = ({post, switchToPost}: {post: any, switchToPost: any}) => {
         setTotalVotes(totalVotes + 1);
         emojiRef[index].rewardMe();
     }
-
     return (
         <PostWrapper>
-            <PostTitle>
-                <h1> {post.title}</h1>
-                <a href = {post.link}>{post.link}</a>
-            </PostTitle>
-            <ContentDivider></ContentDivider>
-            <PostContent>
+            <h1 className = 'postTitle'>{post.title}</h1>
+            <a href = {post.link}>{post.link}</a>
+            <p className = {'description'}>{post.description}</p>
+            <ContentDivider />
                 <Poll>
                     <EmojiWrapper onClick = {() => handleReward(0)}>
                         <Reward ref={(ref) => { emojiRef[0] = ref }} type = 'confetti'>
@@ -58,23 +56,41 @@ const Post = ({post, switchToPost}: {post: any, switchToPost: any}) => {
                     </EmojiWrapper>
                     <PollBar votes = {badVotes} totalVotes = {totalVotes} rank = {3} />
                 </Poll>
-            </PostContent>
-            <ExpandButton callback = {() => switchToPost(post)}/>
+            <ContentDivider />
+            <CommentsList comments = {post.comments}/>
+            <CloseButton callback = {handleClosePost} />
+
         </PostWrapper>
+
     )
 }
+
+export default FullPost;
 
 const PostWrapper = styled.div`
 position: relative;
 background: #363742;
 border-radius: 24.1763px;
-max-width: 100%;
-min-height: 250px;
-`;
+width: 100%;
+min-height: 400px;
+padding: 1.5rem;
 
-const Poll = styled.div`
-vertical-align: middle;
+.postTitle {
+    color: white;
+    font-weight: 400;
+    width: 75%;
+}
 
+a {
+    text-decoration: none;
+    color: white;
+    opacity: .6;
+}
+
+.description {
+    color: white;
+    opacity: .9;
+}
 `;
 
 const ContentDivider = styled.div`
@@ -84,39 +100,13 @@ border-radius: 6.89209px;
 height: 2px;
 `;
 
-const PostTitle = styled.div`
-padding: 1rem;
-
-h1 {
-    font-size: 22px;
-    font-weight: 400;
-    color: white;
-    width: 80%;
-}
-
-a {
-    text-decoration: none;
-    color: white;
-    opacity: .6;
-}
-
-a: hover {
-    opacity: 1;
-}
+const Poll = styled.div`
+vertical-align: middle;
 
 `;
-
-const PostContent = styled.div`
-padding: 1rem;
-
-`;
-
 const EmojiWrapper = styled.div`
 display: inline-block;
 :hover {
 transform: scale(1.1);
 }
 `;
-
-export default Post;
-
