@@ -1,7 +1,7 @@
 version: '3'
 services:
   api:
-    command: npm run test-dev
+    command: npm start
     build: .
     volumes:
       - ./api:/app
