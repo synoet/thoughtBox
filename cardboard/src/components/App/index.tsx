@@ -6,10 +6,10 @@ import FullPost from '../FullPost';
 
 const App = () => {
     const [isPostExpanded, setIsPostExpanded] = useState(false);
-    const [selectedPost, setSelectedPost] = useState();
-    const handleOpenFullPost = (post: any) => {
-        setSelectedPost(post);
-        console.log(post);
+    const [selectedPost, setSelectedPost] = useState('');
+    const handleOpenFullPost = (postId: string) => {
+        setSelectedPost(postId);
+        console.log(postId);
         setIsPostExpanded(true);
     }
     const handleCloseFullPost = () => {
@@ -23,7 +23,7 @@ const App = () => {
                 <PostList switchToPost = {handleOpenFullPost} />
                 }   
                 {isPostExpanded && 
-                <FullPost post = {selectedPost} handleClosePost = {handleCloseFullPost} /> }
+                <FullPost postId = {selectedPost} handleClosePost = {handleCloseFullPost} /> }
             </Content>
         </AppWrapper>
     )

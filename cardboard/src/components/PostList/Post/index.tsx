@@ -6,21 +6,34 @@ import ExpandButton from './ExpandButton';
 import Reward from 'react-rewards';
 
 const Post = ({post, switchToPost}: {post: any, switchToPost: any}) => {
-    const [goodVotes, setGoodVotes] = useState(post.distribution.good);
-    const [okayVotes, setOkayVotes] = useState(post.distribution.okay);
-    const [badVotes, setBadVotes] = useState(post.distribution.bad);
-    const [totalVotes, setTotalVotes] = useState(post.distribution.good + post.distribution.okay + post.distribution.bad);
+    const [goodVotes, setGoodVotes] = useState(post.votes.good);
+    const [okayVotes, setNeutralVotes] = useState(post.votes.neutral);
+    const [badVotes, setBadVotes] = useState(post.votes.bad);
+    const [totalVotes, setTotalVotes] = useState(post.votes.good + post.votes.neutral + post.votes.bad);
 
     let emojiRef: any = [];
+
+    const updateVote = (type: string) => {
+        fetch(`https://thoughtbox-api.herokuapp.com/posts/${post._id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({type: type})
+        }).then((res) => console.log(res));
+    }
 
 
     const handleReward = (index: number) => {
         if(index === 0){
             setGoodVotes(goodVotes + 1);
+            updateVote("good");
         }else if(index === 1){
-            setOkayVotes(okayVotes + 1);
+            setNeutralVotes(okayVotes + 1);
+            updateVote("neutral");
         }else if(index === 2){
             setBadVotes(badVotes + 1);
+            updateVote("bad");
         }
         setTotalVotes(totalVotes + 1);
         emojiRef[index].rewardMe();
@@ -59,7 +72,7 @@ const Post = ({post, switchToPost}: {post: any, switchToPost: any}) => {
                     <PollBar votes = {badVotes} totalVotes = {totalVotes} rank = {3} />
                 </Poll>
             </PostContent>
-            <ExpandButton callback = {() => switchToPost(post)}/>
+            <ExpandButton callback = {() => switchToPost(post._id)}/>
         </PostWrapper>
     )
 }

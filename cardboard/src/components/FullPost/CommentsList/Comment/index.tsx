@@ -5,9 +5,8 @@ const Comment = ({data}: {data: any}) => {
     return (
         <CommentWrapper>
             <Content>
-                <p className = 'approach'>Approach <span>{data.approach}</span></p>
-                <p className = 'time'>{data.time}</p>
-                <p className = 'body'>{data.body}</p>
+                <p className = 'approach'>Approach <span>{data.type}</span></p>
+                <p className = 'body'>{data.description}</p>
             </Content>
         </CommentWrapper>
     )
