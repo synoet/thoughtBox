@@ -21,11 +21,12 @@ export class PostsRoutes extends CommonRoutesConfig implements configureRoutes {
             controller.createPost
         ]);
 
-        this.app.put(`/posts/:id`, [
+        this.app.get(`/posts/:id`, [
             controller.getPost
         ]);
 
+        this.app.patch(`/posts/:id`, [
+            controller.vote
+        ])
     }
-
-
 }

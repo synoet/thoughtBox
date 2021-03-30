@@ -9,9 +9,24 @@ export class PostsDao {
 
     postSchema = new this.Schema({
         _id: String,
+        category: String, 
         title: String,
         link: String,
         description: String,
+        votes: {
+            good: {
+                type: Number,
+                default: 0
+            },
+            neutral: {
+                type: Number,
+                default: 0
+            },
+            bad: {
+                type: Number,
+                default: 0,
+            }
+        }
     });
 
     Post = this.mongooseService.getMongoose().model('Posts', this.postSchema);
@@ -27,7 +42,7 @@ export class PostsDao {
         return this.instance;
     }
 
-    async createPost(postFields: any) {
+    createPost = async (postFields: any) => {
         console.log(postFields);
         postFields._id = shortUUID.generate();
         const post = new this.Post(postFields);
@@ -35,14 +50,27 @@ export class PostsDao {
         return postFields._id;
     }
 
-    async getPostById(postId: string) {
+    getPostById = async (postId: string) => {
+        console.log(postId);
         return this.Post.findOne({_id: postId});
     }
 
-    async listPosts(limit: number = 25, page: number = 0) {
+    listPosts = async (limit: number = 25, page: number = 0) => {
         return this.Post.find()
             .limit(limit)
             .skip(limit * page)
             .exec();
+    }
+
+    vote = async (type: String, postId: String) => {
+        let post: any = await this.Post.findById(postId);
+        if (type == 'good'){
+            post.votes.good ++;
+        }else if(type == 'neutral'){
+            post.votes.neutral ++;
+        }else if (type == 'bad'){
+            post.votes.bad ++;
+        }
+        return await post.save();
     }
 }

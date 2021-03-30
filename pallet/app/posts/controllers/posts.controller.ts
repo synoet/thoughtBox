@@ -22,4 +22,12 @@ export class PostsController {
         const postId = await service.create(req.body);
         res.status(201).send({id: postId});
     }
+
+    vote = async(req: express.Request, res: express.Response) => {
+        const service = PostsService.getInstance();
+        const type = req.body.type;
+        const postId = req.params.id;
+        const post = await service.vote(type, postId);
+        res.status(201).send(post);
+    }
 }

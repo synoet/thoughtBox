@@ -1,6 +1,5 @@
 import express from 'express';
 import * as http from 'http';
-import * as bodyparser from 'body-parser';
 import dotenv from 'dotenv';
 dotenv.config();
 import {CommonRoutesConfig} from './common/common.routes.config';
@@ -17,7 +16,8 @@ console.log('gate 1')
 
 
 
-app.use(bodyparser.json({limit: '5mb'}));
+app.use(express.json());
+app.use(express.urlencoded());
 
 let index = expressWinston.requestWhitelist.indexOf('headers');
 if (index !== -1) expressWinston.requestWhitelist.splice(index, 1);
