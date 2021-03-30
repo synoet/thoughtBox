@@ -7,8 +7,6 @@
     "tsc": "tsc",
     "dev-debug": "nodemon --watch . --ext ts --exec \"npm run tsc\"",
     "start": "npm run tsc && node ./dist/app.js",
-    "dev": "nodemon --watch . --ext ts --exec \"docker-compose build && docker-compose up\"",
-    "test-dev": "nodemon --watch . --ext ts --exec \"mocha -r ts-node/register test/**/*.test.ts\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "argon2": "^0.27.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-winston": "^4.0.2",
     "helmet": "^4.4.1",

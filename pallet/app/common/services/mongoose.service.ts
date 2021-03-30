@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+const port = process.env.DB || '3000';
 export class MongooseService {
     private static instance: MongooseService;
 
@@ -26,11 +27,11 @@ export class MongooseService {
     getMongoose(){
         return mongoose;
     }
-
+    
 
     connectWithRetry() {
         console.log('MongoDB connection with retry');
-        mongoose.connect("mongodb://mongo:27017/api-db", this.options).then(() => {
+        mongoose.connect(port, this.options).then(() => {
             console.log('MongoDB is connected')
         }).catch(err => {
             console.log('MongoDB connection unsuccessful, retry after 5 seconds. ', ++this.count);

@@ -1,7 +1,8 @@
 import express from 'express';
 import * as http from 'http';
 import * as bodyparser from 'body-parser';
-
+import dotenv from 'dotenv';
+dotenv.config();
 import {CommonRoutesConfig} from './common/common.routes.config';
 import {PostsRoutes} from './posts/posts.routes.config';
 
@@ -10,9 +11,11 @@ import * as expressWinston from 'express-winston';
 import helmet from 'helmet';
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
-const port = 3000;
+const port = process.env.PORT;
 const routes: any = [];
 console.log('gate 1')
+
+
 
 app.use(bodyparser.json({limit: '5mb'}));
 
