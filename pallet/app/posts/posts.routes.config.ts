@@ -28,5 +28,9 @@ export class PostsRoutes extends CommonRoutesConfig implements configureRoutes {
         this.app.patch(`/posts/:id`, [
             controller.vote
         ])
+
+        this.app.post(`/posts/:id/comment`, [
+            controller.createComment
+        ])
     }
 }

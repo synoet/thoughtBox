@@ -30,7 +30,11 @@ export class PostsService implements CRUD {
         return PostsDao.getInstance().getPostById(id);
     }
 
-    vote = (type: String, postId: String) => {
+    createComment = (postId: string, commentFields: any) => {
+        return PostsDao.getInstance().createComment(postId, commentFields);
+    }
+
+    vote = (type: string, postId: string) => {
         return PostsDao.getInstance().vote(type, postId);
     }
 

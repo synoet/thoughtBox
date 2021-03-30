@@ -13,6 +13,10 @@ export class PostsDao {
         title: String,
         link: String,
         description: String,
+        time: {
+            type: Date,
+            default: Date.now(),
+        },
         votes: {
             good: {
                 type: Number,
@@ -26,6 +30,14 @@ export class PostsDao {
                 type: Number,
                 default: 0,
             }
+        },
+        num_of_comments: {
+            type: Number,
+            default: 0
+        },
+        comments: {
+            type: Array,
+            default: []
         }
     });
 
@@ -62,7 +74,14 @@ export class PostsDao {
             .exec();
     }
 
-    vote = async (type: String, postId: String) => {
+    createComment = async(postId: string, commentFields: any) => {
+        let post: any = await this.Post.findById(postId);
+        commentFields._id = shortUUID.generate();
+        post.comments.push(commentFields);
+        return await post.save();
+    }
+
+    vote = async (type: String, postId: string) => {
         let post: any = await this.Post.findById(postId);
         if (type == 'good'){
             post.votes.good ++;
