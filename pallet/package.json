@@ -7,7 +7,8 @@
     "tsc": "tsc",
     "dev-debug": "nodemon --watch . --ext ts --exec \"npm run tsc\"",
     "start": "npm run tsc && node ./dist/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm run tsc"
   },
   "keywords": [],
   "author": "Teo Nys <teosnys@gmail.com>",
