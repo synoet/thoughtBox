@@ -6,11 +6,11 @@ import Post from './Post';
 import TagList from './TagList';
 import Submit from '../Submit';
 
-export type Post = []
+export type IPost = []
 
 const PostList = ({switchToPost}: any) => {
     const [categories, setCategories] = useState(['all']);
-    const [posts, setPosts] = useState<Post>([]);
+    const [posts, setPosts] = useState<IPost>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [increment, incrementer] = useState(0);
     useEffect(() => {
@@ -46,7 +46,6 @@ const PostList = ({switchToPost}: any) => {
             <Submit isPost = {true} callback = {() => {incrementer(increment + 1)}}/>
             <ListHeader></ListHeader>
             {posts.map(post => {     
-                console.log(post);
                 if(!isLoading){
                     return (
                         <div>
@@ -54,7 +53,10 @@ const PostList = ({switchToPost}: any) => {
                             <Divider/>
                         </div>
                     )
-
+                }else {
+                    return (
+                        <h1>Loading</h1>
+                    )
                 }       
             })}
         </PostListWrapper>

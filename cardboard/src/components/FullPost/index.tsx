@@ -40,7 +40,7 @@ const FullPost = ({postId, handleClosePost}: any) => {
             setBadVotes(res.votes.bad);
             setTotalVotes(res.votes.good + res.votes.neutral + res.votes.bad)
         }).then(() => {setIsLoading(false)})
-    }, [])
+    }, [postId])
 
     let emojiRef: any = [];
 

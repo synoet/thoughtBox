@@ -17,7 +17,7 @@ const Submit = ({isPost, callback}: {isPost?: boolean, callback: any}) => {
     }
 
     const handleSubmit = () => {
-        if(title != '' && link != '' && description != ''){
+        if(title !== '' && link !== '' && description !== ''){
             fetch(`https://thoughtbox-api.herokuapp.com/posts`, {
                 method: 'POST',
                 headers: {
