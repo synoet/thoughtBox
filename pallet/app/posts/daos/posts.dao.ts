@@ -68,7 +68,8 @@ export class PostsDao {
     }
 
     listPosts = async (limit: number = 25, page: number = 0) => {
-        return this.Post.find()
+        return this.Post
+            .find({}).sort({time: 'desc'})
             .limit(limit)
             .skip(limit * page)
             .exec();

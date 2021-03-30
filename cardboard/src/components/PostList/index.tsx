@@ -4,7 +4,7 @@ import Divider from './Divider';
 import ListHeader from './ListHeader';
 import Post from './Post';
 import TagList from './TagList';
-
+import Submit from '../Submit';
 
 export type Post = []
 
@@ -12,6 +12,7 @@ const PostList = ({switchToPost}: any) => {
     const [categories, setCategories] = useState(['all']);
     const [posts, setPosts] = useState<Post>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [increment, incrementer] = useState(0);
     useEffect(() => {
         fetch(`https://thoughtbox-api.herokuapp.com/posts`, {
             method: 'GET',
@@ -23,7 +24,7 @@ const PostList = ({switchToPost}: any) => {
         .then((res) => {
             setPosts(res);
         }).then(() => {setIsLoading(false)})
-    }, [])
+    }, [increment])
 
     const updateCategories = (category: string) => {
         console.log('hi')
@@ -42,6 +43,7 @@ const PostList = ({switchToPost}: any) => {
     return (
         <PostListWrapper>
             <TagList callback = {updateCategories} categories = {categories}/>
+            <Submit isPost = {true} callback = {() => {incrementer(increment + 1)}}/>
             <ListHeader></ListHeader>
             {posts.map(post => {     
                 console.log(post);
