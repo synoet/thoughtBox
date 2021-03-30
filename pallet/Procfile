@@ -1,1 +1,1 @@
-web: gunicorn ./dist/app.js
+web: npm run tsc && node ./dist/app.js
