@@ -2,4 +2,4 @@
 dist
 package-lock.json
 data
-api
+apinode_modules
