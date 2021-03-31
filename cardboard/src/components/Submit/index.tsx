@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-
+import UpIcon from './icons/UpIcon';
+import DownIcon from './icons/DownIcon';
 const Submit = ({isPost, callback}: {isPost?: boolean, callback: any}) => {
     const [title, setTitle] = useState('');
     const [link, setLink] = useState('');
     const [description, setDescription] = useState('');
+    const [collapse, setCollapse] = useState(false);
 
     const handleTitleChange = (event: any) => {
         setTitle(event.target.value);
@@ -42,21 +44,36 @@ const Submit = ({isPost, callback}: {isPost?: boolean, callback: any}) => {
 
 
     return (
-        <SubmitWrapper>
-            <input className = "titleInput" placeholder = "Title:" value = {title} onChange = {handleTitleChange}></input>
-            <input className = "linkInput" placeholder = "Link:" value = {link} onChange = {handleLinkChange}></input>
-            <textarea className = "descriptionInput" placeholder = "Description:" value = {description} onChange = {handleDescriptionChange}></textarea>
-            <OptionsWrapper>
-                <div className = {'buttonWrapper'}>
-                    <button className = 'Cancel' onClick = {clear}>Cancel</button>
-                    <button className = 'Submit' onClick = {handleSubmit}>Submit</button>
-                </div>
-            </OptionsWrapper>
+        <SubmitWrapper >
+            <div className = "newPost" onClick = {() => setCollapse(!collapse)}>
+                <h3>Create New Post</h3>
+                {!collapse && <StyledUpIcon></StyledUpIcon> }
+                {collapse && <StyledDownIcon></StyledDownIcon>}
+            </div>
+            {!collapse && 
+            <div>
+                <input className = "titleInput" placeholder = "Title:" value = {title} onChange = {handleTitleChange}></input>
+                <input className = "linkInput" placeholder = "Link:" value = {link} onChange = {handleLinkChange}></input>
+                <textarea className = "descriptionInput" placeholder = "Description:" value = {description} onChange = {handleDescriptionChange}></textarea>
+                <OptionsWrapper>
+                    <div className = {'buttonWrapper'}>
+                        <button className = 'Cancel' onClick = {clear}>Cancel</button>
+                        <button className = 'Submit' onClick = {handleSubmit}>Submit</button>
+                    </div>
+                </OptionsWrapper>
+            </div>
+            }
         </SubmitWrapper>
     )
 }
 
 export default Submit;
+
+const StyledUpIcon = styled(UpIcon)`
+opacity: .3;`;
+const StyledDownIcon = styled(DownIcon)`
+opacity: .3;`;
+
 
 const OptionsWrapper = styled.div`
 margin-top: 1rem;
@@ -107,8 +124,27 @@ const SubmitWrapper = styled.div`
     margin-top: 2rem;
     background: #363742;
     border-radius: 24.1763px;
-    min-height: 200px;
     padding: 1.5rem;
+
+
+    .newPost {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        vertical-align: middle;
+        justify-content: space-between;
+        align-items: center;
+        :hover {
+            opacity: .6;
+            cursor: pointer;
+        }
+    }
+
+
+    h3 {
+        color: white;
+        font-weight: 400;
+    }
 
     .titleInput {
         width: 100%;

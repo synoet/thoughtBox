@@ -40,7 +40,7 @@ const Post = ({post, switchToPost}: {post: any, switchToPost: any}) => {
     }
 
     return (
-        <PostWrapper>
+        <PostWrapper >
             <PostTitle>
                 <h1> {post.title}</h1>
                 <a href = {post.link}>{post.link}</a>
@@ -48,7 +48,7 @@ const Post = ({post, switchToPost}: {post: any, switchToPost: any}) => {
             <ContentDivider></ContentDivider>
             <PostContent>
                 <Poll>
-                    <EmojiWrapper onClick = {() => handleReward(0)}>
+                    <EmojiWrapper onClick = {(event) => {handleReward(0); event.stopPropagation()}}>
                         <Reward ref={(ref) => { emojiRef[0] = ref }} type = 'confetti'>
                             <Emoji name = 'okay'/>
                         </Reward>
@@ -56,7 +56,7 @@ const Post = ({post, switchToPost}: {post: any, switchToPost: any}) => {
                     <PollBar votes = {goodVotes} totalVotes = {totalVotes} rank = {1} />
                 </Poll>
                 <Poll>
-                    <EmojiWrapper onClick = {() => handleReward(1)}>
+                    <EmojiWrapper onClick = {(event) => {handleReward(1); event.stopPropagation()}}>
                         <Reward ref={(ref) => { emojiRef[1] = ref }} type = 'confetti'>
                             <Emoji name = 'good'/>
                         </Reward>
@@ -64,7 +64,7 @@ const Post = ({post, switchToPost}: {post: any, switchToPost: any}) => {
                     <PollBar votes = {okayVotes} totalVotes = {totalVotes} rank = {2} />
                 </Poll>
                 <Poll>
-                    <EmojiWrapper onClick = {() => handleReward(2)}>
+                    <EmojiWrapper onClick = {(event) => {handleReward(2); event.stopPropagation()}}>
                         <Reward ref={(ref) => { emojiRef[2] = ref }} type = 'confetti'>
                             <Emoji name = 'bad'/>
                         </Reward>
@@ -83,6 +83,7 @@ background: #363742;
 border-radius: 24.1763px;
 max-width: 100%;
 min-height: 250px;
+
 @media screen and (max-width: 768px) {
     width: 75%;
   }
