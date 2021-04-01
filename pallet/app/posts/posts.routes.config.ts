@@ -17,20 +17,28 @@ export class PostsRoutes extends CommonRoutesConfig implements configureRoutes {
             controller.listPosts
         ]);
 
+        this.app.get(`/posts?category=:category`, [
+            controller.listPostsByCategory
+        ]);
+
         this.app.post(`/posts`, [
             controller.createPost
         ]);
 
-        this.app.get(`/posts/:id`, [
+        this.app.get(`/posts?id=:id`, [
             controller.getPost
         ]);
 
-        this.app.patch(`/posts/:id`, [
+        this.app.patch(`/posts?id=:id`, [
             controller.vote
         ])
 
-        this.app.post(`/posts/:id/comment`, [
+        this.app.post(`/comments`, [
             controller.createComment
+        ])
+
+        this.app.get(`/categories`, [
+            controller.listCategories
         ])
     }
 }

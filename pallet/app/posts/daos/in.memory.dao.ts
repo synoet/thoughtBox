@@ -23,7 +23,7 @@ export class GenericInMemoryDao {
         })
     }
 
-    getPostByIde = (postId: any) => {
+    getPostById = (postId: any) => {
         return new Promise((resolve) => {
             resolve(this.posts.find((post: {id: string; }) => post.id === postId));
         })

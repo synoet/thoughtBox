@@ -1,6 +1,6 @@
 import express from 'express';
 import { PostsService } from '../services/post.services';
-
+import categories from '../constants/categories.constant';
 
 export class PostsController {
     constructor(){}
@@ -11,12 +11,24 @@ export class PostsController {
         res.status(200).send(postList);
     }
 
+    listPostsByCategory = async(req: express.Request, res: express.Response) => {
+        const service = PostsService.getInstance();
+        console.log(req.params.category);
+        const postList = await service.listByCategory(req.params.category);
+        res.status(200).send(postList);
+    }
+
     getPost = async(req: express.Request, res: express.Response) => {
         const service = PostsService.getInstance();
         const post = await service.get(req.params.id);
         res.status(200).send(post);
     }
 
+    listCategories = async(req: express.Request, res: express.Response) => {
+        const service = PostsService.getInstance();
+        res.status(200).send(categories);
+    }
+    
     createPost = async(req: express.Request, res: express.Response) => {
         const service = PostsService.getInstance();
         const postId = await service.create(req.body);

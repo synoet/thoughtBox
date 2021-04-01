@@ -67,6 +67,14 @@ export class PostsDao {
         return this.Post.findOne({_id: postId});
     }
 
+    listPostsByCategory = async (category: string) => {
+        return this.Post
+            .find({category: category}).sort({time: 'desc'})
+            .limit(25)
+            .skip(25 * 1)
+            .exec();
+    }
+
     listPosts = async (limit: number = 25, page: number = 0) => {
         return this.Post
             .find({}).sort({time: 'desc'})

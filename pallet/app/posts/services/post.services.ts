@@ -26,6 +26,10 @@ export class PostsService implements CRUD {
         return PostsDao.getInstance().listPosts(limit, page);
     }
 
+    listByCategory = (category: string) => {
+        return PostsDao.getInstance().listPostsByCategory(category);
+    }
+
     get = (id: any) => {
         return PostsDao.getInstance().getPostById(id);
     }
