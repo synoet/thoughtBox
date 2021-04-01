@@ -4,7 +4,6 @@ import Emoji from '../PostList/Post/Emoji';
 import PollBar from '../PostList/Post/PollBar';
 import Reward from 'react-rewards';
 import CommentsList from './CommentsList';
-
 import CloseButton from './CloseButton';
 export type Post = {
     title: string, 

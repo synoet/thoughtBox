@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import styled from 'styled-components';
+import styled, { keyframes} from 'styled-components';
 import Divider from './Divider';
 import ListHeader from './ListHeader';
 import Post from './Post';
 import TagList from './TagList';
 import Submit from '../Submit';
+import {ReactComponent as Logo} from './logo.svg';
 
 export type IPost = []
 
@@ -23,7 +24,7 @@ const PostList = ({switchToPost}: any) => {
         .then((res) => res.json())
         .then((res) => {
             setPosts(res);
-        }).then(() => {setIsLoading(false)})
+        }).then(() => {setTimeout(() => { setIsLoading(false) }, 1000)})
     }, [increment])
 
     const updateCategories = (category: string) => {
@@ -42,23 +43,28 @@ const PostList = ({switchToPost}: any) => {
 
     return (
         <PostListWrapper>
-            <TagList callback = {updateCategories} categories = {categories}/>
-            <Submit isPost = {true} callback = {() => {incrementer(increment + 1)}}/>
-            <ListHeader></ListHeader>
-            {posts.map(post => {     
-                if(!isLoading){
-                    return (
-                        <div>
-                            <Post switchToPost = {switchToPost} post = {post}></Post>
-                            <Divider/>
-                        </div>
-                    )
-                }else {
-                    return (
-                        <h1>Loading</h1>
-                    )
-                }       
-            })}
+            {!isLoading &&
+                <div>
+
+                    <TagList callback = {updateCategories} categories = {categories}/>
+                    <Submit isPost = {true} callback = {() => {incrementer(increment + 1)}}/>
+                    <ListHeader></ListHeader>
+                    {posts.map(post => {     
+                            return (
+                                <div>
+                                    <Post switchToPost = {switchToPost} post = {post}></Post>
+                                    <Divider/>
+                                </div>
+                            )     
+                    })}
+                </div>
+            }
+            {isLoading && 
+            <Loader>
+                <StyledLogo></StyledLogo>
+                <h2>Unpacking some Boxes</h2>
+            </Loader>
+            }
         </PostListWrapper>
     )
 }
@@ -69,4 +75,34 @@ const PostListWrapper = styled.div`
     width: 75%;
   }
 
+`;
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+const StyledLogo = styled(Logo)`
+animation: ${rotate} infinite 2s linear;
+height:10rem;
+width:10rem;
+display:block;
+margin:auto;
+`;
+
+const Loader = styled.div`
+display: flex;
+flex-direction: column; 
+align-items: center;
+justify-content: center
+color: white;
+margin-top: 30vh;
+
+
+h2 {
+    color: white;
+    font-weight: 400;
+}
 `;
