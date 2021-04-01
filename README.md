@@ -6,7 +6,7 @@
 |--------------|------------------|
 | cardboard    | React Web App    |
 | pallet       | Express REST API |
-| shipper      | Cron Job to Ship Pallet's every 24 hours |
+| shipper      | Cron Job to Ship Pallets every 24 hours |
 
 ### Features
 
