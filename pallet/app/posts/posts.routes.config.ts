@@ -29,7 +29,7 @@ export class PostsRoutes extends CommonRoutesConfig implements configureRoutes {
             controller.getPost
         ]);
 
-        this.app.patch(`/posts?id=:id`, [
+        this.app.patch(`/posts/id`, [
             controller.vote
         ])
 
