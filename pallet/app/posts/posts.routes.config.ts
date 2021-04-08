@@ -25,7 +25,7 @@ export class PostsRoutes extends CommonRoutesConfig implements configureRoutes {
             controller.createPost
         ]);
 
-        this.app.get(`/posts?id=:id`, [
+        this.app.get(`/posts/:id`, [
             controller.getPost
         ]);
 
