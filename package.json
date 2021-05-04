@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@chakra-ui/react": "^1.6.0",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "framer-motion": "^4",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/react-helmet": "^6.1.1",
+    "@types/react-router-dom": "^5.1.7"
+  }
+}

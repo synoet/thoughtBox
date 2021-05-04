@@ -5,7 +5,7 @@ import ListHeader from './ListHeader';
 import Post from './Post';
 import TagList from './TagList';
 import Submit from '../Submit';
-import {ReactComponent as Logo} from './logo.svg';
+// import {ReactComponent as Logo} from './logo.svg';
 
 export type IPost = []
 
@@ -61,7 +61,7 @@ const PostList = ({switchToPost}: any) => {
             }
             {isLoading && 
             <Loader>
-                <StyledLogo></StyledLogo>
+                {/* <StyledLogo></StyledLogo> */}
                 <h2>Unpacking some Boxes</h2>
             </Loader>
             }
@@ -84,13 +84,13 @@ const rotate = keyframes`
     transform: rotate(360deg);
   }
 `;
-const StyledLogo = styled(Logo)`
-animation: ${rotate} infinite 2s linear;
-height:10rem;
-width:10rem;
-display:block;
-margin:auto;
-`;
+// const StyledLogo = styled(Logo)`
+// animation: ${rotate} infinite 2s linear;
+// height:10rem;
+// width:10rem;
+// display:block;
+// margin:auto;
+// `;
 
 const Loader = styled.div`
 display: flex;
