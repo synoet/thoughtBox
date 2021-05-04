@@ -36,7 +36,7 @@ const App = () => {
       </Helmet>
       <AppLayout align = 'center' direction = 'column' w = '100%' h = '100%' minW = '100vw' minH = '100vh' bg = "background.primary">
         <BrandedHeader />
-        <Content w = '100%' direction = 'column' align = 'center' wrap = 'wrap' padding = '1.5rem' maxW = '1400px' spacing = '1rem'>
+        <Content w = '100%' direction = 'column' align = 'center' wrap = 'wrap' padding = '1.5rem' maxW = '1200px' spacing = '1rem'>
           <Router>
             <Route path = '/' component = {Landing} />
             <Route path = '/Posts' component = {Posts} />
