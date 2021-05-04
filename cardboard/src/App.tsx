@@ -6,8 +6,9 @@ import Pallet from './pages/Pallet/[id]';
 import Post from './pages/Post/[id]';
 import Pallets from './pages/Pallets';
 import Posts from './pages/Posts'
-import {ChakraProvider, extendTheme} from "@chakra-ui/react";
-
+import {ChakraProvider, extendTheme, Flex} from "@chakra-ui/react";
+import styled from 'styled-components';
+import BrandedHeader from './components/BrandedHeader';
 const theme = extendTheme({
   colors: {
     purple: {
@@ -29,15 +30,24 @@ const App = () => {
       <Helmet>
         <title> thoughtBox </title>
       </Helmet>
-      <Router>
-        <Route path = '/' component = {Landing} />
-        <Route path = '/Posts' component = {Posts} />
-        <Route path = '/Post/:id' component = {Post} />
-        <Route path = 'Pallet/:id' component = {Pallet} />
-        <Route path = 'Pallets' component = {Pallets} />
-      </Router>
+      <AppLayout direction = 'column' w = '100%' h = '100%' minW = '100vw' minH = '100vh' bg = "background.primary">
+        <BrandedHeader />
+        <Content w = '100%' align = 'center' wrap = 'wrap' padding = '1.5rem' maxW = '1400px' spacing = '1rem'>
+          <Router>
+            <Route path = '/' component = {Landing} />
+            <Route path = '/Posts' component = {Posts} />
+            <Route path = '/Post/:id' component = {Post} />
+            <Route path = 'Pallet/:id' component = {Pallet} />
+            <Route path = 'Pallets' component = {Pallets} />
+          </Router>
+        </Content>
+      </AppLayout>
     </ChakraProvider>
   )
 }
 
 export default App;
+
+const AppLayout = styled(Flex)``;
+
+const Content = styled(Flex)``;
