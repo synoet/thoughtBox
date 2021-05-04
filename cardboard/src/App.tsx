@@ -6,6 +6,7 @@ import Pallet from './pages/Pallet/[id]';
 import Post from './pages/Post/[id]';
 import Pallets from './pages/Pallets';
 import Posts from './pages/Posts'
+import Create from './pages/Create';
 import {ChakraProvider, extendTheme, Flex} from "@chakra-ui/react";
 import styled from 'styled-components';
 import BrandedHeader from './components/BrandedHeader';
@@ -40,10 +41,11 @@ const App = () => {
         <Content w = '100%' direction = 'column' align = 'center' wrap = 'wrap' padding = '1.5rem' maxW = '1200px' spacing = '1rem'>
           <Router>
             <Route path = '/' component = {Landing} />
-            <Route path = '/Posts' component = {Posts} />
-            <Route path = '/Post/:id' component = {Post} />
-            <Route path = 'Pallet/:id' component = {Pallet} />
-            <Route path = 'Pallets' component = {Pallets} />
+            <Route path = '/posts' component = {Posts} />
+            <Route path = '/post/:id' component = {Post} />
+            <Route path = '/pallet/:id' component = {Pallet} />
+            <Route path = '/pallets' component = {Pallets} />
+            <Route path = '/create' component = {Create}/>
           </Router>
         </Content>
       </AppLayout>
