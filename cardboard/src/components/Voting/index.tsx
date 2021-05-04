@@ -28,7 +28,9 @@ const Voting = ({type, data}: VotingProps) => {
       setBadVotes(data.bad)
       setTotalVotes(data.bad + data.good + data.neutral);
     }else if(type === 'boolean'){
-
+      setNoVotes(data.no);
+      setYesVotes(data.yes);
+      setTotalVotes(data.no + data.yes);
     }
   }, [])
 
@@ -56,12 +58,19 @@ const Voting = ({type, data}: VotingProps) => {
   }else {
     return (
       <VStack align = 'flex-start' w = '100%' spacing = {3}>
-        <h1>hi</h1>
+        <HStack w = '90%' spacing = {3}>
+          <VotingIcon src = {yes} />
+          <Box h = '20px' w = {`${(yesVotes / totalVotes) != 0 ? (yesVotes / totalVotes)  * 100: .1 * 100}%`} bg = 'gradient.100' borderRadius = '10px'/>
+          <Text>{yesVotes} votes</Text>
+        </HStack>
+        <HStack spacing = {3} w = '90%'>
+          <VotingIcon src = {no} />
+          <Box h = '20px' w = {`${(noVotes / totalVotes) != 0 ? (noVotes / totalVotes)  * 100: .1 * 100}%`} bg = 'gradient.100' borderRadius = '10px'/>
+          <Text>{noVotes} votes</Text>
+        </HStack>
       </VStack>
     )
-
   }
-
 }
 
 export default Voting;

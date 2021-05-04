@@ -17,6 +17,7 @@ export class PostsDao {
             type: Date,
             default: Date.now(),
         },
+        type: String,
         votes: {
             good: {
                 type: Number,
@@ -27,6 +28,14 @@ export class PostsDao {
                 default: 0
             },
             bad: {
+                type: Number,
+                default: 0,
+            },
+            yes: {
+                type: Number,
+                default: 0
+            },
+            no: {
                 type: Number,
                 default: 0,
             }
@@ -68,11 +77,9 @@ export class PostsDao {
     }
 
     listPostsByCategory = async (category: string) => {
+        console.log(category);
         return this.Post
-            .find({category: category}).sort({time: 'desc'})
-            .limit(25)
-            .skip(25 * 1)
-            .exec();
+            .find({category: category})
     }
 
     listPosts = async (limit: number = 25, page: number = 0) => {
@@ -98,7 +105,12 @@ export class PostsDao {
             post.votes.neutral ++;
         }else if (type == 'bad'){
             post.votes.bad ++;
+        }else if(type == 'yes'){
+            post.votes.yes ++;
+        }else if (type == 'no'){
+            post.votes.no ++;
         }
+
         return await post.save();
     }
 }

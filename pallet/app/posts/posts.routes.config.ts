@@ -17,7 +17,7 @@ export class PostsRoutes extends CommonRoutesConfig implements configureRoutes {
             controller.listPosts
         ]);
 
-        this.app.get(`/posts?category=:category`, [
+        this.app.get(`/posts/:category/category`, [
             controller.listPostsByCategory
         ]);
 
@@ -25,7 +25,7 @@ export class PostsRoutes extends CommonRoutesConfig implements configureRoutes {
             controller.createPost
         ]);
 
-        this.app.get(`/posts/:id`, [
+        this.app.get(`/post/:id`, [
             controller.getPost
         ]);
 
