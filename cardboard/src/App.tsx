@@ -21,6 +21,7 @@ const theme = extendTheme({
       200: "linear-gradient(107.94deg, #461BE3 -19.46%, #BA4BF2 138.92%);"
     },
     white: "#FFFFFF",
+    grey: "#D7D7D7",
     background: {
       primary: "#111047",
       secondary: "#292859",

@@ -11,7 +11,7 @@ type FacetsProps = {
 }
 const Facets = ({items} : FacetsProps) => {
   return (
-    <Flex marginTop= '1rem' border = "1px solid" borderColor = 'purple.200' w = '100%' align = 'center' height = '5rem' padding = '2rem' borderRadius = '10px'>
+    <Flex marginTop= '1rem' border = "1px solid" borderColor = 'purple.100' w = '100%' align = 'center' height = '5rem' padding = '2rem' borderRadius = '10px'>
       <Text color = 'white'>Categories: </Text>
       <HStack marginLeft = '1rem' spacing = {3}>
         {items.map((item: Item) => {
