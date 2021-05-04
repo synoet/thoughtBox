@@ -7,7 +7,7 @@ import {useHistory} from 'react-router-dom';
 const BrandedHeader = () => {
     const history = useHistory();
     return (
-        <Flex w = '100%' direction = 'row' align = 'center' justify = 'center' padding = '1rem'>
+        <Flex w = '100%' direction = 'row' align = 'center' justify = 'center' padding = '2rem'>
             <StyledLogo onClick = {() => history.push('/')} _hover = {{opacity: '.8', cursor: 'pointer'}}src = {logo}></StyledLogo>
         </Flex>
     )
@@ -15,4 +15,5 @@ const BrandedHeader = () => {
 
 export default BrandedHeader;
 
-const StyledLogo = styled(Image)``;
+const StyledLogo = styled(Image)`
+width: 15rem`;

@@ -1,10 +1,11 @@
 import React from 'react'
-
+import IndicatorBlock from '../../components/IndicatorBlock';
+import {Flex} from '@chakra-ui/react';
 const Posts = () => {
   return (
-    <div>
-      
-    </div>
+    <Flex w = '100%' direction = 'column' align = 'center'>
+      <IndicatorBlock />
+    </Flex>
   )
 }
 

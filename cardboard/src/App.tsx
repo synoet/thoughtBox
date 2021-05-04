@@ -16,6 +16,10 @@ const theme = extendTheme({
       200: "#BA4CF3",
       300: "#6736E7"
     },
+    gradient: {
+      100: "linear-gradient(89.99deg, #BA4BF2 0.53%, #A052F4 47.15%, #6635E6 100%)",
+      200: "linear-gradient(107.94deg, #461BE3 -19.46%, #BA4BF2 138.92%);"
+    },
     white: "#FFFFFF",
     background: {
       primary: "#111047",
@@ -30,9 +34,9 @@ const App = () => {
       <Helmet>
         <title> thoughtBox </title>
       </Helmet>
-      <AppLayout direction = 'column' w = '100%' h = '100%' minW = '100vw' minH = '100vh' bg = "background.primary">
+      <AppLayout align = 'center' direction = 'column' w = '100%' h = '100%' minW = '100vw' minH = '100vh' bg = "background.primary">
         <BrandedHeader />
-        <Content w = '100%' align = 'center' wrap = 'wrap' padding = '1.5rem' maxW = '1400px' spacing = '1rem'>
+        <Content w = '100%' direction = 'column' align = 'center' wrap = 'wrap' padding = '1.5rem' maxW = '1400px' spacing = '1rem'>
           <Router>
             <Route path = '/' component = {Landing} />
             <Route path = '/Posts' component = {Posts} />
