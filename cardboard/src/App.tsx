@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Landing from "./pages/Landing";
 import Pallet from "./pages/Pallet/[id]";
@@ -56,7 +56,7 @@ const App = () => {
           spacing="1rem"
         >
           <Router>
-            <Route path="/" component={Landing} />
+            <Redirect from = "/" to= "/posts" />
             <Route path="/posts" component={Posts} />
             <Route path="/post/:id" component={Post} />
             <Route path="/pallet/:id" component={Pallet} />
