@@ -12,7 +12,7 @@ const categories = [
 ]
 
 const Create = () => {
-  const [selectedCategory, setCategory] = useState('All');
+  const [selectedCategory, setCategory] = useState('all');
   const [title, setTitle] = useState<string >('');
   const [description, setDescription] = useState<string >('');
   const [link, setLink] = useState<string | undefined>(undefined);

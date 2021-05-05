@@ -62,7 +62,7 @@ const Posts = () => {
         <>
           {posts.map((post: any) => {
             return (
-              <PostItem title = {post.title}  description = {post.description} voting = {post.votes}/>
+              <PostItem title = {post.title}  description = {post.description} voting = {post.votes} type = {post.type}/>
             )
 
           })}
