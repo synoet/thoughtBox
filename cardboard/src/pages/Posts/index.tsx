@@ -6,56 +6,11 @@ import Facets from "../../components/Facets";
 import PostItem from "./PostItem";
 import SmallCreate from "../../components/Create/SmallCreate";
 
+
 const Posts = () => {
   const history = useHistory();
   const [posts, setPosts] = useState<any>();
   const [items, setItems] = useState([
-    {
-      isSelected: true,
-      text: "All",
-      onClick: () => {},
-    },
-  ]);
-
-  const filterPosts = (category: string) => {
-    const tempFacets: any = [];
-    FacetItems.map((item: any) => {
-      if (item.text.toLowerCase() === category) {
-        item.isSelected = true;
-      } else {
-        item.isSelected = false;
-      }
-      tempFacets.push(item);
-    });
-    setItems(tempFacets);
-    if (category === "all") {
-      fetch(`https://thoughtbox-api.herokuapp.com/posts`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          setPosts(res);
-        });
-    } else {
-      fetch(`https://thoughtbox-api.herokuapp.com/posts/${category}/category`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
-          setPosts(res);
-        })
-        .catch((error) => console.log(error));
-    }
-  };
-
-  const FacetItems = [
     {
       isSelected: true,
       text: "All",
@@ -89,10 +44,46 @@ const Posts = () => {
       text: "Politics",
       onClick: () => filterPosts("politics"),
     },
-  ];
+  ]);
 
+  const filterPosts = (category: string) => {
+    const tempFacets: any = [];
+    for(let i = 0; i < items.length; i++) {
+      if (items[i].text.toLowerCase() === category) {
+        items[i].isSelected = true;
+      } else {
+        items[i].isSelected = false;
+      }
+      tempFacets.push(items[i]);
+    }
+    setItems(tempFacets);
+    if (category === "all") {
+      fetch(`https://thoughtbox-api.herokuapp.com/posts`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          setPosts(res);
+        });
+    } else {
+      fetch(`https://thoughtbox-api.herokuapp.com/posts/${category}/category`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          setPosts(res);
+        })
+        .catch((error) => console.log(error));
+    }
+  };
   useEffect(() => {
-    setItems(FacetItems);
     fetch(`https://thoughtbox-api.herokuapp.com/posts`, {
       method: "GET",
       headers: {
@@ -126,7 +117,7 @@ const Posts = () => {
                 type={post.type}
                 postId={post._id}
               />
-            );
+            )
           })}
         </>
       )}

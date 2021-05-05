@@ -34,7 +34,7 @@ const Voting = ({ postId, type, data }: VotingProps) => {
       setYesVotes(data.yes);
       setTotalVotes(data.no + data.yes);
     }
-  }, []);
+  }, [data.good, data.neutral, data.bad, data.yes, data.no, type]);
 
   const updateVote = (type: string) => {
     if (postId) {
