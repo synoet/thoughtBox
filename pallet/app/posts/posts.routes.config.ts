@@ -33,7 +33,7 @@ export class PostsRoutes extends CommonRoutesConfig implements configureRoutes {
             controller.vote
         ])
 
-        this.app.post(`/comments`, [
+        this.app.post(`/comments/:id`, [
             controller.createComment
         ])
 

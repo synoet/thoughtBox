@@ -99,6 +99,7 @@ const Create = () => {
                     ? "primary"
                     : "outlined"
                 }
+                rounded = {true}
               >
                 {category}
               </Button>

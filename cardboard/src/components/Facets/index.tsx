@@ -28,6 +28,7 @@ const Facets = ({ items }: FacetsProps) => {
             <Button
               onClick={item.onClick}
               type={item.isSelected ? "primary" : "outlined"}
+              rounded = {true}
             >
               {item.text}
             </Button>

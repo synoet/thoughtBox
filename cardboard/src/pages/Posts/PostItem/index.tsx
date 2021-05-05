@@ -3,6 +3,8 @@ import { VStack, Text, Divider, HStack } from "@chakra-ui/react";
 import Card from "../../../components/Card";
 import Voting from "../../../components/Voting";
 import Button from "../../../components/Button";
+import {useHistory} from 'react-router-dom';
+
 type PostItemProps = {
   title: string;
   description: string;
@@ -20,6 +22,7 @@ const PostItem = ({
   type,
   postId,
 }: PostItemProps) => {
+  const history = useHistory();
   return (
     <Card>
       <VStack spacing={5} align="flex-start" w="100%" paddingBottom="1rem">
@@ -39,7 +42,7 @@ const PostItem = ({
           spacig={5}
         >
           <Button type="outlined">View Link</Button>
-          <Button type="primary">Expand</Button>
+          <Button type="primary" onClick = {() => {history.push(`/post/${postId}`)}}>Expand</Button>
         </HStack>
       </VStack>
     </Card>
