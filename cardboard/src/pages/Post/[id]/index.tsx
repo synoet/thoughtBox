@@ -4,6 +4,7 @@ import Button from '../../../components/Button';
 import Voting from '../../../components/Voting';
 import SpectrumGraph from '../../../components/SpectrumGraph';
 import CommentCreate from '../../../components/Create/CommentCreate';
+import Comment from './Comment';
 const Post = ({match}: {match: any}) => {
   const [data, setData] = useState<any>();
   const {
@@ -48,8 +49,20 @@ const Post = ({match}: {match: any}) => {
           <SpectrumGraph type = {data.type} data = {data.votes}/>
         </VStack>
         <Divider borderColor = "gray.600"/>
-        <VStack padding = '2rem' w = '100%'>
-          <CommentCreate />
+        <VStack align = 'flex-start' padding = '2rem' w = '100%' spacing = {5}>
+          <Text fontSize = '2xl' marginBottom = '1rem'>Comments</Text>
+          <CommentCreate postId = {id}/>
+          {data.comments.length > 0 && data.comments.map((comment: any) => {
+            return (
+              <Comment approach = {comment.approach} text = {comment.text} />
+            )
+          })}
+          {data.comments.length === 0 && 
+          <HStack w = '100%' align = 'center' justify = 'center' padding = '2rem'>
+            <Text color = 'gray.500'>No Comments Yet</Text>
+          </HStack>
+          }
+
 
         </VStack>
       </Flex>
