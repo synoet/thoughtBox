@@ -6,7 +6,6 @@ import {
   Input,
   Textarea,
   Select,
-  Box,
   Text,
   Divider,
   Image,
@@ -99,7 +98,7 @@ const Create = () => {
                     ? "primary"
                     : "outlined"
                 }
-                rounded = {true}
+                rounded={true}
               >
                 {category}
               </Button>

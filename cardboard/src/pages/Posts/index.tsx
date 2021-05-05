@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Divider } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import IndicatorBlock from "../../components/IndicatorBlock";
 import Facets from "../../components/Facets";
@@ -9,7 +9,6 @@ import SmallCreate from "../../components/Create/SmallCreate";
 const Posts = () => {
   const history = useHistory();
   const [posts, setPosts] = useState<any>();
-  const [increment, setIncrement] = useState();
   const [items, setItems] = useState([
     {
       isSelected: true,
@@ -105,7 +104,7 @@ const Posts = () => {
         console.log(res);
         setPosts(res);
       });
-  }, [increment]);
+  }, []);
 
   return (
     <Flex w="100%" direction="column" align="center">

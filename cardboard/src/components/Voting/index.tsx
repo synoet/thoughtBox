@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, VStack, HStack, Image, Box, Text } from "@chakra-ui/react";
+import { VStack, HStack, Image, Box, Text } from "@chakra-ui/react";
 import styled from "styled-components";
 import good from "../../images/voting-icons/good.svg";
 import neutral from "../../images/voting-icons/neutral.svg";
@@ -64,7 +64,7 @@ const Voting = ({ postId, type, data }: VotingProps) => {
             h="20px"
             maxW="80%"
             w={`${
-              goodVotes / totalVotes != 0
+              goodVotes / totalVotes !== 0
                 ? (goodVotes / totalVotes) * 100
                 : 0.1 * 100
             }%`}
@@ -86,7 +86,7 @@ const Voting = ({ postId, type, data }: VotingProps) => {
             h="20px"
             maxW="80%"
             w={`${
-              neutralVotes / totalVotes != 0
+              neutralVotes / totalVotes !== 0
                 ? (neutralVotes / totalVotes) * 100
                 : 0.1 * 100
             }%`}
@@ -108,7 +108,7 @@ const Voting = ({ postId, type, data }: VotingProps) => {
             h="20px"
             maxW="80%"
             w={`${
-              badVotes / totalVotes != 0
+              badVotes / totalVotes !== 0
                 ? (badVotes / totalVotes) * 100
                 : 0.1 * 100
             }%`}
@@ -135,7 +135,7 @@ const Voting = ({ postId, type, data }: VotingProps) => {
             h="20px"
             maxW="80%"
             w={`${
-              yesVotes / totalVotes != 0
+              yesVotes / totalVotes !== 0
                 ? (yesVotes / totalVotes) * 100
                 : 0.1 * 100
             }%`}
@@ -157,7 +157,7 @@ const Voting = ({ postId, type, data }: VotingProps) => {
             h="20px"
             maxW="80%"
             w={`${
-              noVotes / totalVotes != 0
+              noVotes / totalVotes !== 0
                 ? (noVotes / totalVotes) * 100
                 : 0.1 * 100
             }%`}
