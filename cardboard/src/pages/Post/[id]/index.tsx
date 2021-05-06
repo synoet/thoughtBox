@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Flex, VStack, HStack, Text, Divider } from "@chakra-ui/react";
+import { Flex, VStack, HStack, Text, Divider, Switch, FormControl, FormLabel} from "@chakra-ui/react";
 import Button from "../../../components/Button";
 import Voting from "../../../components/Voting";
 import SpectrumGraph from "../../../components/SpectrumGraph";
 import CommentCreate from "../../../components/Create/CommentCreate";
 import Comment from "./Comment";
+
 const Post = ({ match }: { match: any }) => {
   const [data, setData] = useState<any>();
   const [increment, setIncrement] = useState(0);
+
   const {
     params: { id },
   } = match;
 
+
   useEffect(() => {
-    if (id) {
+    if (id){
       fetch(`https://thoughtbox-api.herokuapp.com/post/${id}`, {
         method: "GET",
         headers: {
@@ -28,6 +31,8 @@ const Post = ({ match }: { match: any }) => {
     }
   }, [increment, id]);
 
+
+
   return (
     <>
       {data && (
@@ -40,11 +45,23 @@ const Post = ({ match }: { match: any }) => {
           minH="500px"
         >
           <VStack padding="2rem" align="flex-start">
-            <HStack>
-              <Text>Category:</Text>
-              <Button type="primary" rounded={true}>
-                {data.category}
-              </Button>
+            <HStack w = '100%' justify = 'space-between'>
+              <HStack>
+                <Text>Category:</Text>
+                <Button type="primary" rounded={true}>
+                  {data.category}
+                </Button>
+              </HStack>
+              <HStack>
+              <FormControl display="flex" alignItems="center" justify = 'center'>
+                <FormLabel >
+                  Live Mode: 
+                </FormLabel>
+                <Switch onChange = {() => {
+
+                }} size = 'lg' colorScheme = "purple"/>
+              </FormControl>
+              </HStack>
             </HStack>
             <Text fontSize="4xl">{data.title}</Text>
             <Text fontSize="lg">{data.description}</Text>

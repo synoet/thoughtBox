@@ -1,11 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Pallet from "./pages/Pallet/[id]";
 import Post from "./pages/Post/[id]";
 import Pallets from "./pages/Pallets";
 import Posts from "./pages/Posts";
 import Create from "./pages/Create";
+import Landing from "./pages/Landing"
 import { ChakraProvider, extendTheme, Flex } from "@chakra-ui/react";
 import styled from "styled-components";
 import BrandedHeader from "./components/BrandedHeader";
@@ -55,7 +56,7 @@ const App = () => {
           spacing="1rem"
         >
           <Router>
-            <Redirect from="/" to="/posts" />
+            <Route path="/" component={Landing} />
             <Route path="/posts" component={Posts} />
             <Route path="/post/:id" component={Post} />
             <Route path="/pallet/:id" component={Pallet} />

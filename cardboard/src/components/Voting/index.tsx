@@ -11,9 +11,10 @@ type VotingProps = {
   postId: string;
   type: "boolean" | "spectrum";
   data: any;
+  update?: () => {}
 };
 
-const Voting = ({ postId, type, data }: VotingProps) => {
+const Voting = ({ postId, type, data, update }: VotingProps) => {
   const [totalVotes, setTotalVotes] = useState(5);
   const [goodVotes, setGoodVotes] = useState(0);
   const [neutralVotes, setNeutralVotes] = useState(0);
@@ -44,7 +45,12 @@ const Voting = ({ postId, type, data }: VotingProps) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ type: type }),
-      }).then((res) => console.log(res));
+      }).then((res) => console.log(res))
+      .then(() => {
+        if (update){
+          update()
+        }
+      })
     }
   };
 
